@@ -1,0 +1,16 @@
+<!doctype HTML>
+<html>
+  <head><title>Add a Movie to the DB</title></head>
+  <body>
+     <form action="/add_movie" method="POST">
+        <p>What is your favorite movie?</p>
+        {% for field in fields %}
+          <p>
+            {{field}}<br>
+            <input type="text" name="{{field}}">
+          </p>
+        {% endfor %}
+        <input type="submit" value="Submit"/>
+     </form>
+  </body>
+</html>

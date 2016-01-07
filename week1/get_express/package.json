@@ -1,0 +1,13 @@
+{
+    "name": "get_express",
+    "version": "0.1.0",
+    "description": "Get parameters in express",
+    "main": "app.js",
+    "dependencies": {
+        "express": "~4.13.3",
+        "consolidate": "~0.13.1",
+        "nunjucks": "~2.2.0"
+    },
+    "author": "Shannon Bradshaw",
+    "license": "0BSD"
+}
