@@ -1,16 +1,30 @@
 <!doctype HTML>
 <html>
-  <head><title>Add a Movie to the DB</title></head>
+  <head>
+    <title>Add a Movie to the DB</title>
+    <style>
+    body { font-family: 'Helvetica', 'Arial', sans-serif; }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    </head>
   <body>
-     <form action="/add_movie" method="POST">
-        <p>What is your favorite movie?</p>
+    <div class="container">
+    <h1>Add a movie to the database</h1>
+     <form action="/add_movie" method="POST" class="form-horizontal">
+        <legend>What is your favorite movie?</legend>
         {% for field in fields %}
           <p>
             {{field}}<br>
             <input type="text" name="{{field}}">
           </p>
         {% endfor %}
-        <input type="submit" value="Submit"/>
+        <input type="submit" class="btn btn-primary" value="Submit"/>
      </form>
+     <br>
+     <div class="well text-center">
+     <p>Not sure what to add?</p>
+     <a href="/movies" class="btn btn-default btn-xs">View Movies</a>
+     </div>
+     </div>
   </body>
 </html>

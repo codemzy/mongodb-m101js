@@ -29,9 +29,18 @@ MongoClient.connect('mongodb://localhost:27017/video', function(err, db) {
 
     app.use(errorHandler);
 
-    // this is our first route which shows the form to pcik a fruit
+    // this is our first route which shows the form to add a movie
     app.get('/', function(req, res, next) {
         res.render('addMovie', { 'fields' : [ 'Film Name', 'Year', 'IMDB' ] });
+    });
+    
+    // this is another route which shows the list of all the movies
+    app.get('/movies', function(req, res){
+        // render the template we have created in the views folder movies.html
+        // with data recieved from the data base included
+        db.collection('movies').find({}).toArray(function(err, docs) {
+            res.render('movies', { 'movies': docs } );
+        });
     });
 
     // this is where we handle the form submission
@@ -40,13 +49,18 @@ MongoClient.connect('mongodb://localhost:27017/video', function(err, db) {
         var year = req.body["Year"];
         var imdb = req.body["IMDB"];
         if (typeof filmname == 'undefined') {
-            next(Error('Please choose a movie!'));
+            next(Error('Please include a film name!'));
+        }
+        else if (typeof year == 'undefined') {
+            next(Error('Please include a year!'));
+        }
+        else if (typeof imdb == 'undefined') {
+            next(Error('Please include the IMDB reference!'));
         }
         else {
-            db.collection('movies').find({}).toArray(function(err, docs) {
-                res.render('movies', { 'movies': docs } );
-            });
-            console.log(year);
+            db.collection('movies').insert( { "title" : filmname, "year" : year, "imdv" : imdb } );
+            console.log("The movie " + filmname + " has been added to the database")
+            res.render('confirmation_template', { 'filmname': filmname } );
         }
     });
 

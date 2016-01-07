@@ -2,13 +2,23 @@
 <style>
 body { font-family: 'Helvetica', 'Arial', sans-serif; }
 </style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 </head>
 
+<div class="container text-center">
 <h1>Movies</h1>
-<ul>
+<div class="list-group">
 {% for movie in movies %}
-  <li><a href="http://www.imdb.com/title/{{ movie.imdv }}">{{ movie.title }}, {{ movie.year }}</a></li>
+  <a href="http://www.imdb.com/title/{{ movie.imdv }}" class="list-group-item" target="_blank">
+    <h4 class="list-group-item-heading">{{ movie.title }}</h4>
+    <p class="list-group-item-text">{{ movie.imdv }} - {{ movie.year }}</p>
+  </a>
 {% else %}
-  <li>No movies found.</li>
+  <a href="#" class="list-group-item">
+    <h4 class="list-group-item-heading">No Movies Found</h4>
+    <p class="list-group-item-text">There were no movies found in the database.</p>
+  </a>
 {% endfor %}
-</ul>
+</div>
+<a href="/" class="btn btn-primary btn-xs">Add A Movie</a>
+</div>
