@@ -59,6 +59,7 @@ function queryDocument(options) {
         }               
     }
 
+    // we now look for country optional, using dot notatation offices.country_code
     if ("country" in options) {
         query["offices.country_code"] = options.country;
     }
