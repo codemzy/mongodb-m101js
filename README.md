@@ -8,4 +8,8 @@ Overview, Design Goals, the Mongo Shell, Introduction to JSON, Installing Tools,
 
 Week 2
 
-Creating, Reading and Updating Data (CRUD)
+Creating, Reading and Updating Data (CRUD).
+
+Week 3
+
+Deeper dive on the Node.js driver; CRUD operations in the driver; Cursors; writing applications in the driver.
