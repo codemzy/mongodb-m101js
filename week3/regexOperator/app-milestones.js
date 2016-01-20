@@ -41,10 +41,11 @@ function queryDocument(options) {
     
     var query = {};
 
+    // can specify overview (optional)
     if ("overview" in options) {
         query.overview = {"$regex": options.overview, "$options": "i"};
     }
-
+    // can specify milestones (optional) need to use brackets not dot as dot notation to get field
     if ("milestones" in options) {
         query["milestones.source_description"] =
             {"$regex": options.milestones, "$options": "i"};
@@ -63,10 +64,11 @@ function projectionDocument(options) {
         "founded_year": 1
     };
 
+    // include overview field if the overview has been passed in as an option
     if ("overview" in options) {
         projection.overview = 1;
     }
-
+    // include milestones field if the milestones has been passed in as an option
     if ("milestones" in options) {
         projection["milestones.source_description"] = 1;
     }

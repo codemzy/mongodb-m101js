@@ -10,13 +10,13 @@ MongoClient.connect('mongodb://localhost:27017/crunchbase', function(err, db) {
 
     assert.equal(err, null);
     console.log("Successfully connected to MongoDB.");
-    
+
     var query = queryDocument(options);
     var projection = projectionDocument(options);
 
     var cursor = db.collection('companies').find(query);
     cursor.project(projection);
-    
+
     var numMatches = 0;
 
     cursor.forEach(
@@ -38,18 +38,18 @@ MongoClient.connect('mongodb://localhost:27017/crunchbase', function(err, db) {
 function queryDocument(options) {
 
     console.log(options);
-    
-    var query = {};
 
+    var query = {};
+    // if overview passed in, we set the overview and the $options as i means case insensitive
     if ("overview" in options) {
         query.overview = {"$regex": options.overview, "$options": "i"};
     }
-    
+
     return query;
-    
+
 }
 
-
+// create projection and return it
 function projectionDocument(options) {
 
     var projection = {
@@ -68,7 +68,7 @@ function commandLineOptions() {
     var cli = commandLineArgs([
         { name: "overview", alias: "o", type: String }
     ]);
-    
+
     var options = cli.parse()
     if (Object.keys(options).length < 1) {
         console.log(cli.getUsage({
@@ -79,7 +79,7 @@ function commandLineOptions() {
     }
 
     return options;
-    
+
 }
 
 
